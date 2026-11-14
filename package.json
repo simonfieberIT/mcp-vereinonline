@@ -1,0 +1,36 @@
+{
+  "name": "mcp-vereinonline",
+  "version": "0.1.0",
+  "description": "MCP server for the VereinOnline API (members, events, fees, accounting and more); write/delete/send are opt-in",
+  "type": "commonjs",
+  "main": "dist/index.js",
+  "bin": {
+    "mcp-vereinonline": "dist/index.js"
+  },
+  "files": [
+    "dist/**/*",
+    "README.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsx src/index.ts",
+    "start": "node dist/index.js",
+    "test": "vitest run",
+    "prepublishOnly": "npm run build"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.23.0",
+    "zod": "^4.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "tsx": "^4.0.0",
+    "typescript": "^5.0.0",
+    "vitest": "^5.0.2"
+  }
+}

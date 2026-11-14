@@ -18,7 +18,49 @@ Bekannte Einschränkungen:
 
 ## Einrichtung
 
-Voraussetzung ist Node.js 18 oder neuer. Den Server baut man einmal mit `npm install` und `npm run build`. Danach zeigt man im MCP-Client auf `dist/index.js`.
+Voraussetzung ist Node.js 18 oder neuer. Es gibt zwei Wege, den Server einzubinden:
+
+- **Direkt aus GitHub, ohne lokalen Klon** (siehe nächster Abschnitt): `npx` lädt den Server beim Start aus diesem Repository und baut ihn selbst.
+- **Lokaler Klon:** Den Server baut man einmal mit `npm install` und `npm run build`. Danach zeigt man im MCP-Client auf `dist/index.js`. Die Beispiele weiter unten verwenden diesen Weg.
+
+### Direkt aus GitHub (npx)
+
+Im MCP-Client steht statt des Pfads zu `dist/index.js` der Befehl `npx` mit der GitHub-Adresse. Beispiel für Claude Desktop (`claude_desktop_config.json`):
+
+```json
+{
+  "mcpServers": {
+    "vereinonline": {
+      "command": "npx",
+      "args": ["-y", "github:simonfieberIT/mcp-vereinonline"],
+      "env": {
+        "VEREINONLINE_URL": "https://www.vereinonline.org/IHRVEREIN/",
+        "VEREINONLINE_USER": "api-benutzer",
+        "VEREINONLINE_PASSWORD": "<Passwort des API-Benutzers>"
+      }
+    }
+  }
+}
+```
+
+Für Claude Code:
+
+```bash
+claude mcp add vereinonline \
+  -e VEREINONLINE_URL=https://www.vereinonline.org/IHRVEREIN/ \
+  -e VEREINONLINE_USER=api-benutzer \
+  -e VEREINONLINE_PASSWORD='<Passwort des API-Benutzers>' \
+  -- npx -y github:simonfieberIT/mcp-vereinonline
+```
+
+Die Umgebungsvariablen sind dieselben wie beim lokalen Klon, auch die Profildatei für mehrere Vereine funktioniert so.
+
+Was dabei zu beachten ist:
+
+- **Erster Start:** Beim ersten Aufruf lädt npm das Repository, installiert die Abhängigkeiten und führt das Skript `prepare` aus, das den Server baut. Mit leerem npm-Cache dauerte das in einem Test etwa 13 Sekunden. In dieser Zeit antwortet der Server noch nicht. Ein MCP-Client mit kurzem Verbindungs-Timeout kann den ersten Versuch abbrechen. Ein zweiter Start funktioniert dann aus dem Cache.
+- **Aktualisieren:** npm legt Pakete aus Git im Cache ab. Ob `npx` bei jedem Start automatisch den neuesten Stand von `main` holt, ist nicht getestet. Wenn nach einem neuen Push noch der alte Stand läuft, hilft es, den npx-Cache zu leeren (`rm -rf ~/.npm/_npx`) und den Client neu zu starten.
+- **Fester Stand:** Mit `github:simonfieberIT/mcp-vereinonline#<Tag oder Commit>` läuft immer genau dieser Stand. Er muss das Skript `prepare` in `package.json` enthalten, ältere Commits lassen sich so nicht starten.
+- **Sicherheit:** Beim Einbinden von `main` läuft jeder neue Push ungeprüft mit Zugriff auf die Zugangsdaten und damit auf die Mitgliederdaten. Für den produktiven Einsatz ist ein fester Tag oder Commit sicherer.
 
 ### Claude Desktop (eine Vereinsanbindung)
 

@@ -57,7 +57,7 @@ Die Umgebungsvariablen sind dieselben wie beim lokalen Klon, auch die Profildate
 
 Was dabei zu beachten ist:
 
-- **Erster Start:** Beim ersten Aufruf lädt npm das Repository, installiert die Abhängigkeiten und führt das Skript `prepare` aus, das den Server baut. Mit leerem npm-Cache dauerte das in einem Test etwa 13 Sekunden. In dieser Zeit antwortet der Server noch nicht. Ein MCP-Client mit kurzem Verbindungs-Timeout kann den ersten Versuch abbrechen. Ein zweiter Start funktioniert dann aus dem Cache.
+- **Erster Start:** Beim ersten Aufruf lädt npm das Repository, installiert die Abhängigkeiten und führt das Skript `prepare` aus, das den Server baut. Mit leerem npm-Cache dauerte das in Tests 13 bis 19 Sekunden, ein weiterer Start aus dem Cache etwa 2 bis 3 Sekunden. In dieser Zeit antwortet der Server noch nicht. Ein MCP-Client mit kurzem Verbindungs-Timeout kann den ersten Versuch abbrechen. Ein zweiter Start funktioniert dann aus dem Cache.
 - **Aktualisieren:** npm legt Pakete aus Git im Cache ab. Ob `npx` bei jedem Start automatisch den neuesten Stand von `main` holt, ist nicht getestet. Wenn nach einem neuen Push noch der alte Stand läuft, hilft es, den npx-Cache zu leeren (`rm -rf ~/.npm/_npx`) und den Client neu zu starten.
 - **Fester Stand:** Mit `github:simonfieberIT/mcp-vereinonline#<Tag oder Commit>` läuft immer genau dieser Stand. Er muss das Skript `prepare` in `package.json` enthalten, ältere Commits lassen sich so nicht starten.
 - **Sicherheit:** Beim Einbinden von `main` läuft jeder neue Push ungeprüft mit Zugriff auf die Zugangsdaten und damit auf die Mitgliederdaten. Für den produktiven Einsatz ist ein fester Tag oder Commit sicherer.

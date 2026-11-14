@@ -4,7 +4,7 @@ MCP-Server für [VereinOnline](https://www.vereinonline.org), die Vereinssoftwar
 
 ## Status
 
-**Nach Dokumentation implementiert, nicht live verifiziert.** Grundlage ist die API-Dokumentation in die öffentliche Seite https://www.vereinonline.org/api. Die Tests prüfen Konfiguration, Freigaben und Aufrufe gegen eine simulierte API. Sie sagen nichts über die Antworten eines echten Vereins. Die Parameterformate sind bis zum ersten Test gegen einen echten Verein unbestätigt.
+**Nach Dokumentation implementiert, nicht live verifiziert.** Grundlage ist die öffentliche API-Dokumentation unter https://www.vereinonline.org/api. Die Tests prüfen Konfiguration, Freigaben und Aufrufe gegen eine simulierte API. Sie sagen nichts über die Antworten eines echten Vereins. Die Parameterformate sind bis zum ersten Test gegen einen echten Verein unbestätigt.
 
 Bekannte Einschränkungen:
 

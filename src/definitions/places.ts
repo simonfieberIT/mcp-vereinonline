@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { GateError, type FunctionDef } from '../registry';
 
-// Source: docs/vereinonline-api-doc.txt, section "Platzbuchung".
+// Source: https://www.vereinonline.org/api, section "Platzbuchung".
 // The doc heading says "DeletePlaceBooking", the method name is `DeletePlaceBookings`.
 
 export const PLACES: FunctionDef[] = [

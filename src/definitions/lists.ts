@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import type { FunctionDef } from '../registry';
 
-// Source: docs/vereinonline-api-doc.txt, section "Flexible Listen".
+// Source: https://www.vereinonline.org/api, section "Flexible Listen".
 //
 // Known documentation issue (spec "Doku-Unstimmigkeiten"): the doc contains a
 // second `GetList` entry with identical content under a truncated heading.

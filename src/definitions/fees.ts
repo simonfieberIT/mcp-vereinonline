@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { GateError, type FunctionDef } from '../registry';
 
-// Source: docs/vereinonline-api-doc.txt, section "Mitgliedsbeiträge".
+// Source: https://www.vereinonline.org/api, section "Mitgliedsbeiträge".
 // Unverified: for DeleteMemberUserfees the doc calls `id` "Beitrags-ID" (probably the ID of the assignment).
 
 const DATE_FORMAT = 'tt.mm.jjjj or jjjj-mm-tt';

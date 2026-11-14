@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import type { FunctionDef } from '../registry';
 
-// Source: docs/vereinonline-api-doc.txt, section "Newsletter".
+// Source: https://www.vereinonline.org/api, section "Newsletter".
 export const NEWSLETTER: FunctionDef[] = [
   {
     api: 'GetNewsletter',
